@@ -11,14 +11,7 @@ from routes import organisation
 from models.db_session import global_init, create_session
 
 description = """
-Deliveryman register request require a header in the following format: {'Authorization': 'Bearer jwt_token'}
-In JWT payload should be deliveryman_id or user_id
-JWT Payload structure:
-    deliveryman_id: int | None (id of deliveryman from DB)
-    expires: float (the expiration time of the JWT)
-    admin: bool (used for certain endpoints that are for admins)
-
-Other requests don't need authorization
+Hello this is authorization system
 """
 
 app = FastAPI(title="Market Auth API", description=description)

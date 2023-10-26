@@ -16,7 +16,7 @@ router = APIRouter()
              description=register_organisation_description)
 async def register_user(register: UniversalyModel, session: AsyncSession = Depends(get_session)):
     organisation = OrganisationCred(login=register.login, password=hash_password(register.password))
-    organisation.save(session)
+    await organisation.save(session)
     return {"token": sign_jwt("organisation_id", organisation.id, "organisation", 2592000)}
 
 
@@ -25,5 +25,5 @@ async def register_user(register: UniversalyModel, session: AsyncSession = Depen
 async def login_user(login: UniversalyModel, session: AsyncSession = Depends(get_session)):
     organisation_cred = await OrganisationCred.get_by_login(login.login, session)
     if organisation_cred and organisation_cred.password == hash_password(login.password):
-        return {"token": sign_jwt("organisation_id", organisation_cred.user_id, "organisation", 2592000)}
+        return {"token": sign_jwt("organisation_id", organisation_cred.id, "organisation", 2592000)}
     return Response(status_code=403)

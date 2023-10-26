@@ -16,7 +16,7 @@ router = APIRouter()
              description=register_admin_description)
 async def register_admin(register: UniversalyModel, session: AsyncSession = Depends(get_session)):
     admin = AdminCred(login=register.login, password=hash_password(register.password))
-    admin.save(session)
+    await admin.save(session)
     return {"token": sign_jwt("admin_id", admin.id, "admin", 2592000)}
 
 

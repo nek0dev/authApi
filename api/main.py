@@ -14,7 +14,7 @@ description = """
 Hello this is authorization system
 """
 
-app = FastAPI(title="Market Auth API", description=description)
+app = FastAPI(title="Authorization system", description=description)
 app.include_router(organisation.router, prefix="/organisation", tags=["organisation"])
 app.include_router(admin.router, prefix="/admin", tags=["admin"])
 
